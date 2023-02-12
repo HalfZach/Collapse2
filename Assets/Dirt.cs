@@ -21,19 +21,23 @@ public class Dirt : MonoBehaviour, IDamageable
         if (health < maxHealth)
         {
             sr.sprite = sprites[1];
+            
         }
         if (health <= maxHealth/3)
         {
             sr.sprite = sprites[2];
+            
         }
 
         if (health <= 0)
         {
+            SoundManager.Instance.PlaySound("Crash");
             Destroy(gameObject);
         }
         else
         {
             animator.SetTrigger("ShakeTrigger");
+            SoundManager.Instance.PlaySound("Dig");
         }
         
     }
