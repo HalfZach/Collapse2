@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     public Transform groundCheck;
     public LayerMask groundLayer;
+    public SpriteRenderer bodySr;
 
     private float horizontal;
     [SerializeField]private float speed = 8f;
@@ -40,14 +41,14 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
 
-        //if (!isFacingRight && horizontal > 0f)
-        //{
-        //    Flip();
-        //}
-        //else if (isFacingRight && horizontal < 0f)
-        //{
-        //    Flip();
-        //}
+        if (!isFacingRight && horizontal > 0f)
+        {
+            Flip();
+        }
+        else if (isFacingRight && horizontal < 0f)
+        {
+            Flip();
+        }
 
         pointerInput = GetPointerInput();
         weaponParent.PointerPosition = pointerInput;
@@ -111,9 +112,9 @@ public class PlayerMovement : MonoBehaviour
     private void Flip()
     {
         isFacingRight = !isFacingRight;
-        Vector3 localScale = transform.localScale;
+        Vector3 localScale = bodySr.transform.localScale;
         localScale.x *= -1f;
-        transform.localScale = localScale;
+        bodySr.transform.localScale = localScale;
     }
 
     public void Move(InputAction.CallbackContext context)
