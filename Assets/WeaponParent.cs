@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class WeaponParent : MonoBehaviour
@@ -10,13 +11,19 @@ public class WeaponParent : MonoBehaviour
 
     private void Update()
     {
-        //target = Input.mousePosition;
+       Vector2 direction = (PointerPosition - (Vector2)transform.position).normalized;
 
-        //Vector3 vectorToTarget = target - transform.position;
-        //float angle = (Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg);
-        //Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
-        //transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * speed);
+        transform.right = direction;
 
-        transform.right = (PointerPosition - (Vector2)transform.position).normalized;
+        Vector2 scale = transform.localScale;
+        if (direction.x < 0)
+        {
+            scale.y = -1;
+        }
+        else if (direction.x > 0)
+        {
+            scale.y = 1;
+        }
+        transform.localScale = scale;
     }
 }
