@@ -9,6 +9,7 @@ public class Wealth : MonoBehaviour, ICollectable
     public void Collect()
     {
         PlayerStats.Instance.Gold += GoldAmount;
+        SoundManager.Instance.PlaySound("Cash");
         Destroy(gameObject);
     }
 
