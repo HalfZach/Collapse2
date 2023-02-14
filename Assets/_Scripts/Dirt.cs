@@ -13,7 +13,8 @@ public class Dirt : MonoBehaviour, IDamageable
     [SerializeField] private Color[] colors;
     [SerializeField] private GameObject[] gems;
     [SerializeField] private int gemChance = 10;
-
+    [SerializeField] private int rockChance = 5;
+    [SerializeField] private GameObject rock;
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
@@ -57,7 +58,12 @@ public class Dirt : MonoBehaviour, IDamageable
         health = maxHealth;
 
         int num = Random.Range(0, 100);
-        if (num <= gemChance)
+        if (num <= rockChance)
+        {
+            GameObject stone = Instantiate(rock, this.transform);
+        }
+
+        if (num <= gemChance + rockChance && num > rockChance)
         {
             GameObject gem = Instantiate(gems[0], this.transform);
         }

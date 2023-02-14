@@ -147,6 +147,9 @@ MonoBehaviour:
   - {r: 0.103773594, g: 0.103773594, b: 0.103773594, a: 1}
   gems:
   - {fileID: 8682349935294585643, guid: 8bf7d4bc485fd714ca02a94c6bc5dc82, type: 3}
+  gemChance: 10
+  rockChance: 5
+  rock: {fileID: 4510932481623528842, guid: e953f4f4ec8229e4d959e7c49194ea65, type: 3}
 --- !u!95 &1482316691
 Animator:
   serializedVersion: 4
