@@ -10,6 +10,8 @@ public class Dirt : MonoBehaviour, IDamageable
     [SerializeField] private SpriteRenderer sr;
     [SerializeField] private Animator animator;
     [SerializeField] private Collider2D col;
+    [SerializeField] private Color[] colors;
+
     private void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
@@ -48,6 +50,8 @@ public class Dirt : MonoBehaviour, IDamageable
     // Start is called before the first frame update
     void Start()
     {
+        maxHealth = Mathf.RoundToInt (Mathf.Abs (GetComponent<Transform>().position.y)/20) +1;
+        sr.color = colors[maxHealth];
         health = maxHealth;
     }
 
