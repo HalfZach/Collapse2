@@ -20,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
     public Transform attackPos;
     public LayerMask damagables;
 
+    public bool canMove = true;
+
     public float attackRangeX;
     public float attackRangeY;
     public int damage;
@@ -117,9 +119,27 @@ public class PlayerMovement : MonoBehaviour
         bodySr.transform.localScale = localScale;
     }
 
+    public void IncreaseStrength()
+    {
+        damage += 1;
+    }
+
+    public void IncreaseJump()
+    {
+        jumpingPower += 2;
+    }
+
+
     public void Move(InputAction.CallbackContext context)
     {
-        horizontal = context.ReadValue<Vector2>().x;
+        if (canMove)
+        {
+            horizontal = context.ReadValue<Vector2>().x;
+        }
+        else
+        {
+            horizontal = 0;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
