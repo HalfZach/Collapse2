@@ -11,6 +11,8 @@ public class Dirt : MonoBehaviour, IDamageable
     [SerializeField] private Animator animator;
     [SerializeField] private Collider2D col;
     [SerializeField] private Color[] colors;
+    [SerializeField] private GameObject[] gems;
+    [SerializeField] private int gemChance = 10;
 
     private void Awake()
     {
@@ -50,9 +52,15 @@ public class Dirt : MonoBehaviour, IDamageable
     // Start is called before the first frame update
     void Start()
     {
-        maxHealth = Mathf.RoundToInt (Mathf.Abs (GetComponent<Transform>().position.y)/20) +1;
+        maxHealth = Mathf.RoundToInt (Mathf.Abs (GetComponent<Transform>().position.y)/15) +1;
         sr.color = colors[maxHealth];
         health = maxHealth;
+
+        int num = Random.Range(0, 100);
+        if (num <= gemChance)
+        {
+            GameObject gem = Instantiate(gems[0], this.transform);
+        }
     }
 
     public void Respawn()
