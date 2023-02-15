@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class DirtHolder : MonoBehaviour
 {
+    
+   public void CollapseWait()
+    {
+        Invoke("Collapse", 2);
+    } 
+    
     public void Collapse()
     {
        Dirt[] allDirts = GetComponentsInChildren<Dirt>();

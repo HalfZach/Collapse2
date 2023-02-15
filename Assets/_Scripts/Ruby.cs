@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class Ruby : MonoBehaviour, ICollectable
 {
+
+    public Animator CamAnim;
     public void Collect()
     {
         PlayerStats.Instance.RubyObtained = true;
-        FindObjectOfType<DirtHolder>().Collapse();
+        CamAnim.SetTrigger("CaveIn");
+        FindObjectOfType<DirtHolder>().CollapseWait();
+       
         Destroy(gameObject);
     }
 
