@@ -8,11 +8,14 @@ public class DirtHolder : MonoBehaviour
    public void CollapseWait()
     {
         Invoke("Collapse", 2);
+
     } 
     
     public void Collapse()
     {
-       Dirt[] allDirts = GetComponentsInChildren<Dirt>();
+        SoundManager.Instance.PlaySound("GetOut");
+        SoundManager.Instance.PlaySound("Bercillak");
+        Dirt[] allDirts = GetComponentsInChildren<Dirt>();
 
         foreach (var d in allDirts)
         {

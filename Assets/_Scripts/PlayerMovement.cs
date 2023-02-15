@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform attackPos;
     public LayerMask damagables;
 
-    public bool canMove = true;
+    public bool canMove = false;
 
     public float attackRangeX;
     public float attackRangeY;
@@ -36,6 +36,17 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         weaponParent = GetComponentInChildren<WeaponParent>();
+    }
+
+    private void Start()
+    {
+        canMove = false;
+        Invoke("AllowMovement", 6);
+    }
+
+    public void AllowMovement()
+    {
+        canMove = true;
     }
 
     // Update is called once per frame
