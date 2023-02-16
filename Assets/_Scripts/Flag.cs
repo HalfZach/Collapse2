@@ -8,7 +8,10 @@ public class Flag : MonoBehaviour, ICollectable
     {
         if (PlayerStats.Instance.RubyObtained)
         {
+            SoundManager.Instance.StopSound();
+            SoundManager.Instance.PlaySound("Win");
             Debug.Log("You Win!");
+            Loader.Load("Victory Scene");
         }
     }
 }

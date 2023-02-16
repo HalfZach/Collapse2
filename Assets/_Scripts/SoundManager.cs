@@ -39,6 +39,13 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    public void StopSound()
+    {
+        foreach (var i in sounds)
+        {
+            i.Stop();
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
