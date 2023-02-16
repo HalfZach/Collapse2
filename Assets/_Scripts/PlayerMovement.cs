@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheck;
     public LayerMask groundLayer;
     public SpriteRenderer bodySr;
+    public Animator animator;
 
     private float horizontal;
     [SerializeField]private float speed = 8f;
@@ -36,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         weaponParent = GetComponentInChildren<WeaponParent>();
+        animator = GetComponent<Animator>();
     }
 
     private void Start()
@@ -61,6 +63,15 @@ public class PlayerMovement : MonoBehaviour
         else if (isFacingRight && horizontal < 0f)
         {
             Flip();
+        }
+
+        if (IsGrounded())
+        {
+            animator.SetBool("IsJumping", false);
+        }
+        else
+        {
+            animator.SetBool("IsJumping", true);
         }
 
         pointerInput = GetPointerInput();
@@ -151,6 +162,8 @@ public class PlayerMovement : MonoBehaviour
         {
             horizontal = 0;
         }
+
+        animator.SetFloat("Speed", Mathf.Abs(horizontal));
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
