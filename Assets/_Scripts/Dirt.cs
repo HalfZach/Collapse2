@@ -53,7 +53,7 @@ public class Dirt : MonoBehaviour, IDamageable
     // Start is called before the first frame update
     void Start()
     {
-        maxHealth = Mathf.RoundToInt (Mathf.Abs (GetComponent<Transform>().position.y)/15) +1;
+        maxHealth = Mathf.RoundToInt (Mathf.Abs ((GetComponent<Transform>().position.y)/15)*1.75f) +1;
         sr.color = colors[maxHealth];
         health = maxHealth;
 
