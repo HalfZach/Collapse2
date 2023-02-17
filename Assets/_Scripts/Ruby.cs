@@ -8,9 +8,11 @@ public class Ruby : MonoBehaviour, ICollectable
     public Animator CamAnim;
     public void Collect()
     {
+        SoundManager.Instance.StopSound();
         PlayerStats.Instance.Gold += 1000;
         SoundManager.Instance.PlaySound("Cash");
         PlayerStats.Instance.RubyObtained = true;
+
         SoundManager.Instance.PlaySound("CaveIn");
         CamAnim.SetTrigger("CaveIn");
         FindObjectOfType<DirtHolder>().CollapseWait();
